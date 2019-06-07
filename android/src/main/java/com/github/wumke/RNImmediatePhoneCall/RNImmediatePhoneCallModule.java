@@ -21,6 +21,7 @@ public class RNImmediatePhoneCallModule extends ReactContextBaseJavaModule {
     private ReactApplicationContext reactContext;
     private static String number = "";
       private static String secondNumber = "";
+      private static int delay = 5000;
     private static final int PERMISSIONS_REQUEST_ACCESS_CALL = 101;
 
     public RNImmediatePhoneCallModule(ReactApplicationContext reactContext) {
@@ -51,7 +52,7 @@ public class RNImmediatePhoneCallModule extends ReactContextBaseJavaModule {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         RNImmediatePhoneCallModule.this.reactContext.startActivity(intent);
          } 
-    }, 6000); 
+    }, RNImmediatePhoneCallModule.delay); 
 
         String url = "tel:" + RNImmediatePhoneCallModule.number;
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
@@ -62,10 +63,11 @@ public class RNImmediatePhoneCallModule extends ReactContextBaseJavaModule {
     }
 
    @ReactMethod
-    public void doublePhoneCall(String number, String secondNumber) {
+    public void doublePhoneCall(String number, String secondNumber, int delay) {
     //public void doublePhoneCall(String number, String secondNumber) {
         RNImmediatePhoneCallModule.number =  Uri.encode(number);
         RNImmediatePhoneCallModule.secondNumber = Uri.encode(secondNumber);
+        RNImmediatePhoneCallModule.delay = delay;
 
         if (ContextCompat.checkSelfPermission(reactContext.getApplicationContext(),
                 android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
