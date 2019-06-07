@@ -1,0 +1,27 @@
+{
+  "name": "react-native-make-call",
+  "version": "1.0.0",
+  "description": "Initiate immediate phone call (without further user interaction) for React Native on iOS and Android. + Double calls",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ilya-bmi/RN-make-call.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "phone",
+    "call",
+    "android",
+    "ios"
+  ],
+  "author": "Ilya BMI",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/ilya-bmi/RN-make-call/issues"
+  },
+  "homepage": "http://recern.app"
+}
