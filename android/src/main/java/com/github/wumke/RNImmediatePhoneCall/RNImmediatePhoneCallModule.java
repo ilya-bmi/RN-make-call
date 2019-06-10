@@ -37,19 +37,15 @@ public class RNImmediatePhoneCallModule extends ReactContextBaseJavaModule {
         return "RNImmediatePhoneCall";
     }
 
-	//@SuppressLint("MissingPermission")
-    public void call() {
-        String url = "tel:" + RNImmediatePhoneCallModule.number;
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        rnImmediatePhoneCallModule.reactContext.startActivity(intent);
-    }
 
-
- @ReactMethod
-    public void doubleCall() {
-
- Handler handler = new Handler(); 
+   @ReactMethod
+    public void doublePhoneCall(String number, String secondNumber, int delay) {
+    //public void doublePhoneCall(String number, String secondNumber) {
+        RNImmediatePhoneCallModule.number =  Uri.encode(number);
+        RNImmediatePhoneCallModule.secondNumber = Uri.encode(secondNumber);
+        RNImmediatePhoneCallModule.delay = delay;
+ 
+        Handler handler = new Handler(); 
 
 
     handler.postDelayed(new Runnable() {
@@ -58,25 +54,16 @@ public class RNImmediatePhoneCallModule extends ReactContextBaseJavaModule {
         String url = "tel:" + RNImmediatePhoneCallModule.secondNumber;
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        RNImmediatePhoneCallModule.this.reactContext.startActivity(intent);
+    rnImmediatePhoneCallModule.reactContext.startActivity(intent);
+    //    RNImmediatePhoneCallModule.this.reactContext.startActivity(intent);
          } 
     }, RNImmediatePhoneCallModule.delay); 
 
-        String url = "tel:" + RNImmediatePhoneCallModule.number;
+        String url = "tel:" + Uri.encode(number);
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        RNImmediatePhoneCallModule.this.reactContext.startActivity(intent);
-        
-
-    }
-
-   @ReactMethod
-    public void doublePhoneCall(String number, String secondNumber, int delay) {
-    //public void doublePhoneCall(String number, String secondNumber) {
-        RNImmediatePhoneCallModule.number =  Uri.encode(number);
-        RNImmediatePhoneCallModule.secondNumber = Uri.encode(secondNumber);
-        RNImmediatePhoneCallModule.delay = delay;
-            doubleCall();
+        rnImmediatePhoneCallModule.reactContext.startActivity(intent);
+        //RNImmediatePhoneCallModule.this.reactContext.startActivity(intent);
     
     }
 	
@@ -89,6 +76,7 @@ public class RNImmediatePhoneCallModule extends ReactContextBaseJavaModule {
         String url = "tel:" + Uri.encode(number);
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //RNImmediatePhoneCallModule.this.reactContext.startActivity(intent);
         rnImmediatePhoneCallModule.reactContext.startActivity(intent);
     }
 	
