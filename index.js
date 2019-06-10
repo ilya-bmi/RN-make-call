@@ -1,2 +1,2 @@
-var ForwardCalls = require('./ForwardCalls');
-module.exports = ForwardCalls;
+var MakeCalls = require('./MakeCalls');
+module.exports = MakeCalls;

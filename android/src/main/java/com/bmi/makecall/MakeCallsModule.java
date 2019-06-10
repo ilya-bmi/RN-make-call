@@ -1,7 +1,8 @@
-package com.himelbrand.forwardcalls;
+package com.bmi.makecall;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
@@ -13,18 +14,18 @@ import com.facebook.react.common.MapBuilder;
  * {@link NativeModule} that allows JS to open the default browser
  *  for an url.
  */
-public class RNForwardCallsModule extends ReactContextBaseJavaModule {
+public class MakeCallsModule extends ReactContextBaseJavaModule {
 
   ReactApplicationContext reactContext;
 
-  public RNForwardCallsModule(ReactApplicationContext reactContext) {
+  public MakeCallsModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
   }
 
   @Override
   public String getName() {
-    return "ForwardCalls";
+    return "MakeCalls";
   }
 
   @ReactMethod
@@ -38,26 +39,26 @@ public class RNForwardCallsModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void doublePhoneCall(String number, String secondNumber, int delay) {
-  final public String  number;
-  final public String  secondNumber;
-   final public int delay;  
+  final  String  Znumber = number;
+  final  String  ZsecondNumber = secondNumber;
+   final  int Zdelay = delay;  
        Handler handler = new Handler(); 
 
 
     handler.postDelayed(new Runnable() {
-         @Override 
+     //    @Override 
          public void run() { 
-              String uri = "tel:" + Uri.encode(secondNumber);
+              String uri = "tel:" + Uri.encode(ZsecondNumber);
               Intent intent = new Intent(Intent.ACTION_CALL);
               intent.setData(Uri.parse(uri));
               intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-              this.reactContext.startActivity(intent);
+              MakeCallsModule.this.reactContext.startActivity(intent);
     //    RNImmediatePhoneCallModule.this.reactContext.startActivity(intent);
          } 
-    }, RNImmediatePhoneCallModule.delay); 
+    }, Zdelay); 
 
      
-      String uri = "tel:" + Uri.encode(number);
+      String uri = "tel:" + Uri.encode(Znumber);
       Intent intent = new Intent(Intent.ACTION_CALL);
       intent.setData(Uri.parse(uri));
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
