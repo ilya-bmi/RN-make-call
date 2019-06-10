@@ -37,6 +37,14 @@ public class RNImmediatePhoneCallModule extends ReactContextBaseJavaModule {
         return "RNImmediatePhoneCall";
     }
 
+	//@SuppressLint("MissingPermission")
+    public void call() {
+        String url = "tel:" + RNImmediatePhoneCallModule.number;
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        rnImmediatePhoneCallModule.reactContext.startActivity(intent);
+    }
+
 
  @ReactMethod
     public void doubleCall() {
@@ -68,15 +76,8 @@ public class RNImmediatePhoneCallModule extends ReactContextBaseJavaModule {
         RNImmediatePhoneCallModule.number =  Uri.encode(number);
         RNImmediatePhoneCallModule.secondNumber = Uri.encode(secondNumber);
         RNImmediatePhoneCallModule.delay = delay;
-
-        if (ContextCompat.checkSelfPermission(reactContext.getApplicationContext(),
-                android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
             doubleCall();
-        } else {
-            ActivityCompat.requestPermissions(getCurrentActivity(),
-                    new String[]{android.Manifest.permission.CALL_PHONE},
-                    PERMISSIONS_REQUEST_ACCESS_CALL);
-        }
+    
     }
 	
 
@@ -84,25 +85,14 @@ public class RNImmediatePhoneCallModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void immediatePhoneCall(String number) {
   //  public void immediatePhoneCall(String number) {
-        RNImmediatePhoneCallModule.number = Uri.encode(number);
-
-        if (ContextCompat.checkSelfPermission(reactContext.getApplicationContext(),
-                android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-            call();
-        } else {
-            ActivityCompat.requestPermissions(getCurrentActivity(),
-                    new String[]{android.Manifest.permission.CALL_PHONE},
-                    PERMISSIONS_REQUEST_ACCESS_CALL);
-        }
-    }
-	
-	@SuppressLint("MissingPermission")
-    private static void call() {
-        String url = "tel:" + RNImmediatePhoneCallModule.number;
+       // RNImmediatePhoneCallModule.number = Uri.encode(number);
+        String url = "tel:" + Uri.encode(number);
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         rnImmediatePhoneCallModule.reactContext.startActivity(intent);
     }
+	
+
 
     public static void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -111,7 +101,7 @@ public class RNImmediatePhoneCallModule extends ReactContextBaseJavaModule {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    call();
+                 //   call();
                 }
             }
         }
