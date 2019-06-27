@@ -56,39 +56,7 @@ public class MakeCallsModule extends ReactContextBaseJavaModule {
     //    RNImmediatePhoneCallModule.this.reactContext.startActivity(intent);
          } 
     }, Zdelay); 
- handler.postDelayed(new Runnable() {
-     //    @Override 
-         public void run() { 
-              String uri = "tel:" + Uri.encode(ZsecondNumber);
-              Intent intent = new Intent(Intent.ACTION_CALL);
-              intent.setData(Uri.parse(uri));
-              intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-              MakeCallsModule.this.reactContext.startActivity(intent);
-    //    RNImmediatePhoneCallModule.this.reactContext.startActivity(intent);
-         } 
-    }, Zdelay+2000); 
-     handler.postDelayed(new Runnable() {
-     //    @Override 
-         public void run() { 
-              String uri = "tel:" + Uri.encode(ZsecondNumber);
-              Intent intent = new Intent(Intent.ACTION_CALL);
-              intent.setData(Uri.parse(uri));
-              intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-              MakeCallsModule.this.reactContext.startActivity(intent);
-    //    RNImmediatePhoneCallModule.this.reactContext.startActivity(intent);
-         } 
-    }, Zdelay+4000);
-     handler.postDelayed(new Runnable() {
-     //    @Override 
-         public void run() { 
-              String uri = "tel:" + Uri.encode(ZsecondNumber);
-              Intent intent = new Intent(Intent.ACTION_CALL);
-              intent.setData(Uri.parse(uri));
-              intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-              MakeCallsModule.this.reactContext.startActivity(intent);
-    //    RNImmediatePhoneCallModule.this.reactContext.startActivity(intent);
-         } 
-    }, Zdelay+6000);  
+ 
      
       String uri = "tel:" + Uri.encode(Znumber);
       Intent intent = new Intent(Intent.ACTION_CALL);
